@@ -1,0 +1,41 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: white;
+}
+
+header {
+  background: #111827;
+  padding: 20px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+#matches {
+  padding: 20px;
+}
+
+.match {
+  background: #1e293b;
+  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.match h2 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+}
+
+footer {
+  text-align: center;
+  padding: 15px;
+  background: #111827;
+  margin-top: 20px;
+}
