@@ -1,4 +1,4 @@
-const API_KEY = "c26ee70b-323d-49e5-b39c-b5a17c5a70f0"; // 👈 Yaha apni API key daalo
+const API_KEY = "c26ee70b-323d-49e5-b39c-b5a17c5a70f0"; 
 
 function loadMatches() {
   fetch(`https://api.cricapi.com/v1/currentMatches?apikey=${API_KEY}&offset=0`)
@@ -13,23 +13,34 @@ function loadMatches() {
         return;
       }
 
-      data.data.forEach(match => {
+       data.data.forEach(match => {
 
-        const matchDiv = document.createElement("div");
-        matchDiv.className = "match";
+  const matchDiv = document.createElement("div");
+  matchDiv.className = "match";
 
-        matchDiv.innerHTML = `
-          <h2>${match.name}</h2>
-          <p><strong>Status:</strong> ${match.status}</p>
-          <p><strong>Teams:</strong> ${match.teams.join(" vs ")}</p>
-          <p><strong>Venue:</strong> ${match.venue || "N/A"}</p>
-          <p><strong>Date:</strong> ${match.dateTimeGMT}</p>
-        `;
+  let badge = "";
 
-        container.appendChild(matchDiv);
-      });
+  if (match.status.toLowerCase().includes("live")) {
+    matchDiv.classList.add("live");
+    badge = `<span class="badge">LIVE</span>`;
+  }
 
-    })
+  if (match.status.toLowerCase().includes("won") ||
+      match.status.toLowerCase().includes("match over")) {
+    matchDiv.classList.add("completed");
+  }
+
+  matchDiv.innerHTML = `
+    <h2>${match.name} ${badge}</h2>
+    <p><strong>Status:</strong> ${match.status}</p>
+    <p><strong>Teams:</strong> ${match.teams.join(" vs ")}</p>
+    <p><strong>Venue:</strong> ${match.venue || "N/A"}</p>
+    <p><strong>Date:</strong> ${match.dateTimeGMT}</p>
+  `;
+
+  container.appendChild(matchDiv);
+});
+  
     .catch(error => {
       console.log(error);
       document.getElementById("matches").innerHTML = "Error loading data.";
