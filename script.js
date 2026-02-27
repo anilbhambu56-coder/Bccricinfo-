@@ -1,4 +1,4 @@
-const API_KEY = "PASTE_YOUR_API_KEY_HERE"; // 👈 Yaha apni API key daalo
+const API_KEY = "c26ee70b-323d-49e5-b39c-b5a17c5a70f0"; // 👈 Yaha apni API key daalo
 
 function loadMatches() {
   fetch(`https://api.cricapi.com/v1/currentMatches?apikey=${API_KEY}&offset=0`)
