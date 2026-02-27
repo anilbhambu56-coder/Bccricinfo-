@@ -9,38 +9,40 @@ function loadMatches() {
       container.innerHTML = "";
 
       if (!data.data || data.data.length === 0) {
-        container.innerHTML = "<p>No live matches right now.</p>";
+        container.innerHTML = "<p>No matches right now.</p>";
         return;
       }
 
-       data.data.forEach(match => {
+      data.data.forEach(match => {
 
-  const matchDiv = document.createElement("div");
-  matchDiv.className = "match";
+        const matchDiv = document.createElement("div");
+        matchDiv.className = "match";
 
-  let badge = "";
+        let badge = "";
 
-  if (match.status.toLowerCase().includes("live")) {
-    matchDiv.classList.add("live");
-    badge = `<span class="badge">LIVE</span>`;
-  }
+        if (match.status && match.status.toLowerCase().includes("live")) {
+          matchDiv.classList.add("live");
+          badge = `<span class="badge">LIVE</span>`;
+        }
 
-  if (match.status.toLowerCase().includes("won") ||
-      match.status.toLowerCase().includes("match over")) {
-    matchDiv.classList.add("completed");
-  }
+        if (match.status && 
+           (match.status.toLowerCase().includes("won") ||
+            match.status.toLowerCase().includes("match over"))) {
+          matchDiv.classList.add("completed");
+        }
 
-  matchDiv.innerHTML = `
-    <h2>${match.name} ${badge}</h2>
-    <p><strong>Status:</strong> ${match.status}</p>
-    <p><strong>Teams:</strong> ${match.teams.join(" vs ")}</p>
-    <p><strong>Venue:</strong> ${match.venue || "N/A"}</p>
-    <p><strong>Date:</strong> ${match.dateTimeGMT}</p>
-  `;
+        matchDiv.innerHTML = `
+          <h2>${match.name} ${badge}</h2>
+          <p><strong>Status:</strong> ${match.status}</p>
+          <p><strong>Teams:</strong> ${match.teams ? match.teams.join(" vs ") : ""}</p>
+          <p><strong>Venue:</strong> ${match.venue || "N/A"}</p>
+          <p><strong>Date:</strong> ${match.dateTimeGMT}</p>
+        `;
 
-  container.appendChild(matchDiv);
-});
-  
+        container.appendChild(matchDiv);
+      });
+
+    })
     .catch(error => {
       console.log(error);
       document.getElementById("matches").innerHTML = "Error loading data.";
@@ -48,4 +50,4 @@ function loadMatches() {
 }
 
 loadMatches();
-setInterval(loadMatches, 30000); // 30 sec auto refresh
+setInterval(loadMatches, 30000);
