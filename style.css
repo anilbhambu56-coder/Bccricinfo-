@@ -9,11 +9,8 @@ header {
   background: #111827;
   padding: 20px;
   text-align: center;
-}
-
-header h1 {
-  margin: 0;
-  font-size: 28px;
+  font-size: 22px;
+  font-weight: bold;
 }
 
 #matches {
@@ -25,17 +22,31 @@ header h1 {
   margin-bottom: 20px;
   padding: 15px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  transition: 0.3s;
 }
 
-.match h2 {
-  margin: 0 0 10px 0;
-  font-size: 18px;
+.match:hover {
+  transform: scale(1.02);
 }
 
-footer {
-  text-align: center;
-  padding: 15px;
-  background: #111827;
-  margin-top: 20px;
+.live {
+  border-left: 5px solid #00ff88;
+}
+
+.completed {
+  opacity: 0.6;
+}
+
+.badge {
+  background: red;
+  color: white;
+  padding: 3px 8px;
+  border-radius: 5px;
+  font-size: 12px;
+  margin-left: 10px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
 }
