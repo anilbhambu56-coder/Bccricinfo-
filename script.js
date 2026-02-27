@@ -1,7 +1,7 @@
 const API_KEY = "c26ee70b-323d-49e5-b39c-b5a17c5a70f0"; 
 
 function loadMatches() {
-  fetch(`https://api.cricapi.com/v1/currentMatches?apikey=${API_KEY}&offset=0`)
+  fetch(`https://api.cricapi.com/v1/cricScore?apikey=${API_KEY}`)
     .then(response => response.json())
     .then(data => {
 
